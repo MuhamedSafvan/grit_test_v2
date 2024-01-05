@@ -105,6 +105,8 @@ class _HomePageState extends State<HomePage> {
     final entry = Entry(text: textCtrl.text, time: currentTime);
     _entryBox.add(entry);
     textCtrl.clear();
+    speechText = '';
+    recordingText = '';
     showToast('Entry saved successfully');
     setState(() {});
   }
@@ -134,7 +136,6 @@ class _HomePageState extends State<HomePage> {
                   onChanged: (txt) {
                     setState(() {});
                   },
-
                   style: TextStyle(color: Colors.white),
                   maxLines: null,
                   decoration: InputDecoration(border: InputBorder.none),
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green, 
+                          primary: Colors.green,
                           onPrimary: Colors.white,
                           elevation: 5.0,
                           padding: EdgeInsets.symmetric(
@@ -168,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red,
-                          onPrimary: Colors.white, 
+                          onPrimary: Colors.white,
                           elevation: 5.0,
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 15),
@@ -178,6 +179,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         onPressed: () => setState(() {
                           textCtrl.clear();
+                          speechText = '';
+                          recordingText = '';
                         }),
                         child: Text('Discard'),
                       ),
@@ -190,9 +193,9 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: isRecording ? Colors.red : null, 
-                onPrimary: isRecording ? Colors.white : null, 
-                elevation: 5.0, 
+                primary: isRecording ? Colors.red : null,
+                onPrimary: isRecording ? Colors.white : null,
+                elevation: 5.0,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
